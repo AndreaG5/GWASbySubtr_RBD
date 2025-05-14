@@ -42,9 +42,14 @@ LDSCoutput<-ldsc(traits=traits,sample.prev=sample.prev,population.prev=populatio
 
 CommonFactor_DWLS<- commonfactor(covstruc = LDSCoutput, estimation="DWLS")
 
-mod_model = 'F1=~ NA*PD +ALS+DLB
+mod_model<-'F1=~ NA*RBD 
+F2=~NA*RBD+PD +DLB + MSA 
 F1~~1*F1
-DLB ~~ 0*DLB'
+F2~~1*F2
+F1~~0*F2
+RBD~~0*RBD
+a>.001
+DLB~~a*DLB'
 
 #usr_model = usermodel(LDSCoutput, model=mod_model, estimation = "DWLS", CFIcalc = TRUE, std.lv = TRUE, imp_cov = FALSE)
 
